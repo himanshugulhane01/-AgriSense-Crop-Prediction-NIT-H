@@ -1,0 +1,5 @@
+{
+    "crop_model_accuracy": 0.03636363636363636,
+    "yield_model_mae": 1444.8044858756084,
+    "yield_model_r2": -0.04246820491192205
+}

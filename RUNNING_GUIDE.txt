@@ -1,0 +1,86 @@
+========================================================================
+             AGRISENSE - HOW TO RUN AND START THE WEBSITE
+========================================================================
+
+This guide walks you through setting up and running the AgriSense 
+applications on your Windows system.
+
+This project consists of two different applications:
+  1. Django App (Port 8000): Crop Recommendation & Yield Prediction
+  2. Flask App  (Port 5000): Leaf Disease Identification from Images
+
+------------------------------------------------------------------------
+STEP-BY-STEP SETUP INSTRUCTIONS
+------------------------------------------------------------------------
+
+Follow these steps in your Windows Command Prompt or PowerShell:
+
+1. Open your terminal and navigate to the project directory:
+   cd c:\Users\himan\Desktop\Projects\AgriSense-RIH-NIT-NGP-main
+
+2. Create a virtual environment:
+   python -m venv venv
+
+3. Activate the virtual environment:
+   .\venv\Scripts\Activate
+   (You should now see "(venv)" at the start of your terminal line)
+
+4. Install the required Python packages:
+   pip install -r requirements.txt
+
+
+------------------------------------------------------------------------
+OPTION A: RUNNING THE DJANGO CROP & YIELD PREDICTION DASHBOARD
+------------------------------------------------------------------------
+
+Once you have installed the requirements, run these commands in the 
+active (venv) terminal:
+
+1. Train the Machine Learning models (generates .pkl files):
+   python train_model.py
+
+2. Prepare and apply database migrations:
+   python manage.py makemigrations predictor
+   python manage.py migrate
+
+3. Start the Django development server:
+   python manage.py runserver
+
+4. Open your web browser and go to:
+   http://127.0.0.1:8000/
+
+
+------------------------------------------------------------------------
+OPTION B: RUNNING THE FLASK PLANT DISEASE CLASSIFIER
+------------------------------------------------------------------------
+
+If you want to use the plant disease scanner (which uses model.h5 to 
+analyze uploaded leaf images):
+
+1. Start the Flask application:
+   python app.py
+
+2. Open your web browser and go to:
+   http://127.0.0.1:5000/
+
+
+------------------------------------------------------------------------
+TROUBLESHOOTING & COMMON ISSUES
+------------------------------------------------------------------------
+
+- DO NOT USE VS CODE's "GO LIVE" BUTTON:
+  The "Go Live" extension is only for static HTML pages. Because this 
+  project uses Python backend logic (Django/Flask) and templates, 
+  you must run it via the terminal command lines described above.
+
+- "ModuleNotFoundError: No module named 'django'":
+  This happens if you forgot to activate the virtual environment 
+  (.\venv\Scripts\Activate) or didn't install the requirements. Make sure 
+  your terminal prompt starts with "(venv)" before running python commands.
+
+- Virtual Environment Creation Failure:
+  If "python -m venv venv" fails with a copy or permission error:
+  1. Make sure no other python terminal or server is running.
+  2. Fallback Option: Install requirements globally instead by running:
+     pip install --user -r requirements.txt
+     Then you can run the django/flask servers directly without venv.
